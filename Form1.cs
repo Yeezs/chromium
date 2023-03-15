@@ -39,7 +39,18 @@ namespace chromium
 
         private void Go_Click(object sender, EventArgs e)
         {
-            //searchbox.Load(Address.Text);
+            string text;
+            text = searchbox.Text;
+
+            TabPage tabPage = new TabPage();
+            tabPage.Text = "BrowserPage";
+
+            chromiumBrowser = new ChromiumWebBrowser($"https://google.com/search?q={text}");
+            tabPage.Controls.Add(chromiumBrowser);
+            chromiumBrowser.Dock = DockStyle.Fill;
+
+            BrowserTabs.TabPages.Add(tabPage);
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
