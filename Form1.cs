@@ -39,18 +39,30 @@ namespace chromium
 
         private void Go_Click(object sender, EventArgs e)
         {
+            Browse();
+        }
+
+        private void Browsing_KeyDown(object sender, KeyEventArgs e) 
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Browse();
+            }
+        }
+
+        private void Browse()
+        {
             string text;
             text = searchbox.Text;
 
             TabPage tabPage = new TabPage();
-            tabPage.Text = "BrowserPage";
+            tabPage.Text = text;
 
             chromiumBrowser = new ChromiumWebBrowser($"https://google.com/search?q={text}");
             tabPage.Controls.Add(chromiumBrowser);
             chromiumBrowser.Dock = DockStyle.Fill;
 
             BrowserTabs.TabPages.Add(tabPage);
-
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -80,7 +92,7 @@ namespace chromium
                 }
                 else
                 {
-                    AddBrowserTab();
+                    
                 }
             }
             catch(Exception)
