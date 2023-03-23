@@ -31,9 +31,6 @@ namespace chromium
             BrowserTabs.TabPages[0].Controls.Add(chromiumBrowser);
             chromiumBrowser.Dock = DockStyle.Fill;
 
-            chromiumBrowser = new ChromiumWebBrowser("https://google.com");
-            BrowserTabs.TabPages[1].Controls.Add(chromiumBrowser);
-            chromiumBrowser.Dock = DockStyle.Fill;
 
         }
 
@@ -59,7 +56,7 @@ namespace chromium
             tabPage.Text = text;
 
             chromiumBrowser = new ChromiumWebBrowser($"https://google.com/search?q={text}");
-            tabPage.Controls.Add(chromiumBrowser);
+            //tabPage.Controls.Add(chromiumBrowser);
             chromiumBrowser.Dock = DockStyle.Fill;
 
             BrowserTabs.TabPages.Add(tabPage);
@@ -98,6 +95,32 @@ namespace chromium
             catch(Exception)
             {
 
+            }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+            //nothing here.
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            chromiumBrowser.Reload();
+        }
+
+        private void ForwardButton_Click(object sender, EventArgs e)
+        {
+            if (chromiumBrowser.CanGoForward)
+            {
+                chromiumBrowser.Forward();
+            }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            if (chromiumBrowser.CanGoBack)
+            {
+                chromiumBrowser.Back();
             }
         }
     }
